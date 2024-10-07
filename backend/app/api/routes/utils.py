@@ -7,10 +7,6 @@ from app.utils import generate_test_email, send_email
 
 router = APIRouter()
 
-@router.post("/webh/", dependencies=[Depends(get_current_active_superuser)], status_code=201)
-def webhook(data:stockBase):
-    return data
-
 @router.post(
     "/test-email/",
     dependencies=[Depends(get_current_active_superuser)],
