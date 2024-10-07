@@ -2,11 +2,14 @@ from fastapi import APIRouter, Depends
 from pydantic.networks import EmailStr
 
 from app.api.deps import get_current_active_superuser
-from app.models import Message
+from app.models import Message, stockBase
 from app.utils import generate_test_email, send_email
 
 router = APIRouter()
 
+@router.post("/webh/", dependencies=[Depends(get_current_active_superuser)], status_code=201)
+def webhook(data:stockBase):
+    return data
 
 @router.post(
     "/test-email/",
@@ -26,6 +29,6 @@ def test_email(email_to: EmailStr) -> Message:
     return Message(message="Test email sent")
 
 
-@router.get("/health-check/")
-async def health_check() -> bool:
-    return True
+# @router.get("/health-check/")
+# async def health_check() -> bool:
+#     return True

@@ -57,6 +57,11 @@ class UsersPublic(SQLModel):
 
 
 # Shared properties
+class stockBase(SQLModel):
+    stocks: str
+    trigger_prices: str | None
+    scan_name: str
+
 class ItemBase(SQLModel):
     title: str = Field(min_length=1, max_length=255)
     description: str | None = Field(default=None, max_length=255)
