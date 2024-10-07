@@ -122,6 +122,6 @@ def recover_password_html_content(email: str, session: SessionDep) -> Any:
     return HTMLResponse(
         content=email_data.html_content, headers={"subject:": email_data.subject}
     )
-@api_router.post("/webh", status_code=201, response_model=stockBase)
+@router.post("/webh", status_code=201, response_model=stockBase)
 def webhook(data:stockBase):
     return data
